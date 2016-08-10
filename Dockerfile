@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   		npm \
 		wget \
 		awscli \
+		rsync \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
