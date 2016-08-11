@@ -47,3 +47,4 @@ RUN go get -u bitbucket.org/tebeka/go2xunit
 RUN go get -u github.com/axw/gocov/gocov
 RUN go get -u gopkg.in/matm/v1/gocov-html
 RUN go get -u github.com/AlekSi/gocov-xml
+RUN go get -u github.com/spf13/hugo
