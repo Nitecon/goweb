@@ -33,7 +33,12 @@ ENV GOPATH /builds
 ENV LIQUIBASE_HOME /usr/local/liquibase
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH:$LIQUIBASE_HOME
 
+RUN wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-$LV/liquibase-$LV-bin.tar.gz -o /tmp/liquibase.tar.gz
+RUN tar -xf /tmp/liquibase.tar.gz -C /usr/local/liquibase
+RUN chmod +x /usr/local/liquibase/liquibase
+
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
 WORKDIR $GOPATH
 
 RUN wget https://raw.githubusercontent.com/docker-library/golang/master/go-wrapper
@@ -44,8 +49,3 @@ RUN go get -u bitbucket.org/tebeka/go2xunit
 RUN go get -u github.com/axw/gocov/gocov
 RUN go get -u gopkg.in/matm/v1/gocov-html
 RUN go get -u github.com/AlekSi/gocov-xml
-
-RUN wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-$LV/liquibase-$LV-bin.tar.gz -o /tmp/liquibase.tar.gz
-
-RUN tar -xf /tmp/liquibase.tar.gz -C /usr/local/liquibase
-RUN chmod +x /usr/local/liquibase/liquibase
