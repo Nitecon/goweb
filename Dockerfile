@@ -31,7 +31,7 @@ ENV GOPATH /builds
 ENV LIQUIBASE_HOME /usr/local/liquibase
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH:$LIQUIBASE_HOME
 
-RUN wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-$LV/liquibase-$LV-bin.tar.gz -o /tmp/liquibase.tar.gz
+RUN wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-$LV/liquibase-$LV-bin.tar.gz -O /tmp/liquibase.tar.gz
 RUN tar -xf /tmp/liquibase.tar.gz -C /usr/local/liquibase
 RUN chmod +x /usr/local/liquibase/liquibase
 
