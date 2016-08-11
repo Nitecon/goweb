@@ -1,4 +1,4 @@
-FROM buildpack-deps:jessie-scm
+FROM java:8-jdk
 ENV GOLANG_VERSION 1.6.3
 ENV MYSQL_ROOT_PASSWORD root
 ENV LV 3.5.1
@@ -14,9 +14,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		wget \
 		awscli \
 		rsync \
-		unzip \
-		openjdk-8-jre-headless \
-		openjdk-8-jdk \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
