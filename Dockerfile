@@ -1,7 +1,7 @@
 FROM buildpack-deps:jessie-scm
 ENV GOLANG_VERSION 1.6.3
 ENV MYSQL_ROOT_PASSWORD root
-
+ENV LV 3.5.1
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		g++ \
@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		wget \
 		awscli \
 		rsync \
+		unzip \
+		openjdk-8-jre-headless \
+		openjdk-8-jdk \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
@@ -24,8 +27,11 @@ RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
 	&& tar -C /usr/local -xzf golang.tar.gz \
 	&& rm golang.tar.gz
 
+RUN mkdir -p /usr/local/liquibase
+
 ENV GOPATH /builds
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+ENV LIQUIBASE_HOME /usr/local/liquibase
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH:$LIQUIBASE_HOME
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 WORKDIR $GOPATH
@@ -38,3 +44,8 @@ RUN go get -u bitbucket.org/tebeka/go2xunit
 RUN go get -u github.com/axw/gocov/gocov
 RUN go get -u gopkg.in/matm/v1/gocov-html
 RUN go get -u github.com/AlekSi/gocov-xml
+
+RUN wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-$LV/liquibase-$LV-bin.tar.gz -o /tmp/liquibase.tar.gz
+
+RUN tar -xf /tmp/liquibase.tar.gz -C /usr/local/liquibase
+RUN chmod +x /usr/local/liquibase/liquibase
