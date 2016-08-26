@@ -1,5 +1,5 @@
 FROM java:8-jdk
-ENV GOLANG_VERSION 1.7
+ENV GOLANG_VERSION 1.6.3
 ENV LV 3.5.1
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
