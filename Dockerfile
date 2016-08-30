@@ -41,10 +41,8 @@ RUN wget https://raw.githubusercontent.com/docker-library/golang/master/go-wrapp
 RUN mv go-wrapper /usr/local/bin/
 RUN curl https://glide.sh/get | sh
 RUN go get -u github.com/golang/lint/golint
-RUN go get -u bitbucket.org/tebeka/go2xunit
 RUN go get -u github.com/axw/gocov/gocov
 RUN go get -u gopkg.in/matm/v1/gocov-html
-RUN go get -u github.com/AlekSi/gocov-xml
 RUN go get -u github.com/spf13/hugo
 RUN go get -u github.com/wellington/wellington/wt
 RUN go get -u github.com/kahing/goofys
