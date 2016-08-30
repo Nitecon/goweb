@@ -46,4 +46,4 @@ RUN go get -u github.com/axw/gocov/gocov
 RUN go get -u gopkg.in/matm/v1/gocov-html
 RUN go get -u github.com/spf13/hugo
 RUN go get -u github.com/wellington/wellington/wt
-RUN go get -u github.com/kahing/goofys
+RUN go get github.com/rlmcpherson/s3gof3r/gof3r
