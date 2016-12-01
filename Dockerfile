@@ -1,5 +1,5 @@
 FROM java:8-jdk
-ENV GOLANG_VERSION 1.7.1
+ENV GOLANG_VERSION 1.7.3
 ENV LV 3.5.1
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
-ENV GOLANG_DOWNLOAD_SHA256 43ad621c9b014cde8db17393dc108378d37bc853aa351a6c74bf6432c1bbd182
+ENV GOLANG_DOWNLOAD_SHA256 508028aac0654e993564b6e2014bf2d4a9751e3b286661b0b0040046cf18028e
 
 RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
 	&& echo "$GOLANG_DOWNLOAD_SHA256  golang.tar.gz" | sha256sum -c - \
@@ -47,3 +47,4 @@ RUN go get -u gopkg.in/matm/v1/gocov-html
 RUN go get -u github.com/spf13/hugo
 RUN go get -u github.com/wellington/wellington/wt
 RUN go get github.com/rlmcpherson/s3gof3r/gof3r
+RUN go get -u github.com/kisielk/errcheck
